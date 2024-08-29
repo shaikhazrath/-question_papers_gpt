@@ -33,3 +33,4 @@ env/
 .tox/
 dist/
 build/
+.vercel

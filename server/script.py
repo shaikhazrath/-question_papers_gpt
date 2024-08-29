@@ -59,18 +59,23 @@ def getquestions(getAllquestions,file_path):
 
 
 def handle_analysis(subject):
-    folder_path = f'./uploads/{subject}'
-    if not os.path.exists(folder_path):
-        print(f"Folder does not exist: {folder_path}")
-        return
-    pdf_docs = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.lower().endswith('.pdf')]
-    if not pdf_docs:
-        print(f"No PDF files found in folder: {folder_path}")
-        return
-    
-    raw_text = get_pdf_text(pdf_docs)
-    text_chunks = get_text_chunks(raw_text)
-    file_path = get_vector_store(text_chunks)
-    getAllquestions = 'can you list 10 question from that context that came multiple times in context mention what years that question is present at end '
-    questions = getquestions(getAllquestions,file_path)
-    return questions
+    try:
+        folder_path = f'./uploads/{subject}'
+        if not os.path.exists(folder_path):
+            raise FileNotFoundError(f"Folder does not exist: {folder_path}")
+
+        pdf_docs = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.lower().endswith('.pdf')]
+        if not pdf_docs:
+            raise FileNotFoundError(f"No PDF files found in folder: {folder_path}")
+        
+        raw_text = get_pdf_text(pdf_docs)
+        text_chunks = get_text_chunks(raw_text)
+        file_path = get_vector_store(text_chunks)
+
+        getAllquestions = 'Can you list 10 questions from the context that appeared multiple times and mention the years in which they were present?'
+        questions = getquestions(getAllquestions, file_path)
+        
+        return questions
+
+    except Exception as e:
+        raise e

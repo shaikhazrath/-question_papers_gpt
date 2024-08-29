@@ -51,8 +51,13 @@ def get_questions():
 
     try:
         questions = handle_analysis(subject)
-        
-        return jsonify({'questions': questions})
+        if questions:
+            return jsonify({'questions': questions})
+        else:
+            return jsonify({'message': 'No questions found'}), 404
+
+    except FileNotFoundError as e:
+        return jsonify({'error': str(e)}), 404
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
