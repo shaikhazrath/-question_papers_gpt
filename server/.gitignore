@@ -1,0 +1,35 @@
+# Ignore Python bytecode
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore virtual environment folder
+venv/
+env/
+
+# Ignore environment variables
+.env
+
+# Ignore IDE or editor specific files
+.vscode/
+.idea/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore compiled C extensions
+*.so
+
+# Ignore coverage files
+.coverage
+*.cover
+
+# Ignore test and build files
+.pytest_cache/
+.tox/
+dist/
+build/
