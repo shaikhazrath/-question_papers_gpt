@@ -1,4 +1,4 @@
-# Find Repeted In Exam Question papers
+# Find Repeted Question papers In Exams
 
 This project is an application that allows users to upload past exam papers and generate  questions which are similar and repeting in multiple question papers. It consists of a Flask backend, a React frontend, and uses AI-powered text analysis to process and generate questions.
 
